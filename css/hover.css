@@ -1,0 +1,71 @@
+* {
+	box-sizing: border-box; /* Le dice al navegador que debe incluir las propiedades de tamaño (ancho y alto). */
+}
+
+html {
+	height: 100%; /* Propiedad adicional para colocar la imagen centrada a lo alto. */
+}
+
+body {
+	background-color: black;
+	margin: 0;
+	min-height: 100%; /* Propiedad adicional para colocar la imagen centrada a lo alto. */
+	display: flex; /* Todos los elementos hijos de alinean de manera horizontal. */
+	flex-direction: column; /* Coloca los elementos en columna. Esto es indispensable para que cuando se reduzca el tamaño de la pantalla no se agrupen los demás elementos (logo y título) y se mantengan en su posición. */
+}
+
+.contenedor {
+	margin: auto; /* Manejar una margen automática según lo definido en el height. */
+	overflow: hidden; /* Permite que la imagen no se salga del tamaño del contenedor, en este caso, el alto de la imagen. */
+	position: relative; /* Posicionar un elemento relativo a su posición normal. Se debe definir para poder trabajar en conjunto con la posición absoluta del hijo (imagen) y definir en él su ubicación exacta. */
+}
+
+.contenedor:hover {
+	border: 5px solid transparent; /* Debe definirse antes que border-image. Define el borde de la linea. El transparent es opcional, no cambia nada. */
+	border-image: linear-gradient(to right, #0066ff 0%, #cccc00 100%); /* Debe definirse después de border. Crea una linea hacia la derecha por todo el bloque empezando del azul al amarillo. De 0% a 100% para manejar por igual los colores. */
+	border-image-slice: 1; /* Para que no se cree un punto en cada esquina del bloque sino que tome toda la linea del bloque. 0-1 */
+	transition-duration: 0.5s; /* Tiempo que toma en construir la linea del borde al acercar el mouse. */
+}
+
+.contenedor:hover .mk-imagen {
+	transform: scale(1.5); /* Cuando se pasa el mouse por la imagen, aumenta a una escala específica. */
+	transition-duration: 2s; /* El tiempo que toma al aumentar la imagen es de 2 segundos (acercar mouse). */
+	transition-delay: 0.2s; /* Espera n tiempo antes de que la transición tome efecto. */
+}
+
+.mk-imagen {
+	transition-duration: 1s; /* El tiempo que toma al disminuir la imagen es de 1 segundo (quitar mouse). */
+}
+
+.contenedor:hover .mk-logo {
+	opacity: 1; /* Coloca la imagen visible, 0 se oculta, 1 es visible. */
+	transform: rotateY(0deg); /* Rota un elemento alrededor del eje Y en un grado dado. */
+	transition-duration: 1.5s; /* El tiempo que toma al girar la imagen es de segundo y medio (acercar mouse). */
+	transition-delay: 1s; /* El tiempo que toma en aparecer el logo (acercar mouse). */
+}
+
+.mk-logo {
+	position: absolute; /* La imagen (logo) se coloca afuera del contenedor, para luego colocarla encima de él. */
+	left: 40%; /* Se mueve desde la izquierda un 40% al centro. */
+	top: 40%; /* Se mueve desde abajo un 40% al centro. */
+	opacity: 0; /* Coloca la imagen invisible, 0 se oculta, 1 es visible. */
+	transform: rotateY(270deg); /* Rota un elemento alrededor del eje Y en un grado dado. */
+	transition-duration: 0.5s; /* El tiempo que toma al girar la imagen es de mitad de segundo (quitar mouse). */
+}
+
+.contenedor:hover .mk-titulo {
+	opacity: 1; /* Coloca el texto visible, 0 se oculta, 1 es visible. */
+	transition-duration: 2s; /* El tiempo que toma al colocar el texto es de dos segundos (acercar mouse). */
+	transition-delay: 1.5s; /* Espera n tiempo antes de que la transición tome efecto. */
+}
+
+.mk-titulo {
+	font-family: 'Cinzel', serif;
+	font-size: 70px;
+	position: absolute; /* La imagen (logo) se coloca afuera del contenedor, para luego colocarla encima de él. */
+	left: 20%; /* Se mueve desde la izquierda un 20% al centro. */
+	top: 60%; /* Se mueve desde abajo un 60% al centro. */
+	text-shadow: 0px 0px 8px #ccc; /* Crea una sobra del texto. Horizontal-Vertical-Radio-Color. */
+	opacity: 0; /* Coloca el texto invisible, 0 se oculta, 1 es visible. */
+	transition-duration: 0.5s; /* El tiempo que toma al quitar el texto es de mitad de segundo (quitar mouse). */
+}
